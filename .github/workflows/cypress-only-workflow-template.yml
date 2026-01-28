@@ -1,0 +1,38 @@
+name: Cypress Only tests workflow
+on:
+  workflow_call:
+    inputs:
+      test-name:
+        required: true
+        type: string
+      test-command:
+        required: true
+        type: string
+      artifact-name-suffix:
+        required: false
+        type: string
+jobs:
+  tests:
+    name: Run Cypress E2E tests for ${{ inputs.test-name }}
+    runs-on: ubuntu-slim
+    env:
+      # prevents extra Cypress installation progress messages
+      CI: 1
+      # avoid warnings like "tput: No value for $TERM and no -T specified"
+      TERM: xterm
+    steps:
+      - name: Checkout Branch
+        uses: actions/checkout@v3
+      - name: Setup cypress dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-0t64 libgbm-dev libnotify-dev libnss3 libxss1 libasound2t64 libxtst6 xauth xvfb
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.19.6
+          registry-url: 'https://registry.npmjs.org'
+      - name: Cypress tests
+        uses: cypress-io/github-action@v2
+        with:
+          command: ${{ inputs.test-command }}

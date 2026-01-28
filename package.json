@@ -1,0 +1,19 @@
+{
+  "name": "cypress-test-repo",
+  "version": "1.0.0",
+  "description": "Minimal test repository for debugging Cypress workflow issues",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run",
+    "cypress:open": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/cypress-test-repo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "9.5.4"
+  }
+}

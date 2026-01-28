@@ -1,0 +1,10 @@
+name: Cypress Multi-Spec Release tests workflow
+on:
+  pull_request:
+    branches: [ '**' ]
+jobs:
+  tests:
+    uses: ./.github/workflows/cypress-only-workflow-template.yml
+    with:
+      test-name: Cypress-Multi-Spec
+      test-command: env CYPRESS_NO_COMMAND_LOG=1 npx cypress run --config baseUrl=https://opensearch.org --spec 'cypress/integration/plugins/cypress-multi-spec-test/*'
