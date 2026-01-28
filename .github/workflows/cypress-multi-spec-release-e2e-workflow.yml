@@ -8,5 +8,15 @@ jobs:
   tests:
     uses: ./.github/workflows/cypress-only-workflow-template.yml
     with:
-      test-name: Cypress-Multi-Spec
-      test-command: env CYPRESS_NO_COMMAND_LOG=1 npx cypress run --browser chromium --config baseUrl=https://opensearch.org --spec 'cypress/integration/plugins/cypress-multi-spec-test/*'
+      test-name: Cypress-Multi-Spec-With-Chrome
+      test-command: env CYPRESS_NO_COMMAND_LOG=1 npx cypress run --browser chrome --config baseUrl=https://opensearch.org --spec 'cypress/integration/plugins/cypress-multi-spec-test/*'
+  tests-with-firefox:
+    uses: ./.github/workflows/cypress-only-workflow-template.yml
+    with:
+      test-name: Cypress-Multi-Spec-With-Firefox
+      test-command: env CYPRESS_NO_COMMAND_LOG=1 npx cypress run --browser firefox --config baseUrl=https://opensearch.org --spec 'cypress/integration/plugins/cypress-multi-spec-test/*'
+  tests-with-electron:
+    uses: ./.github/workflows/cypress-only-workflow-template.yml
+    with:
+      test-name: Cypress-Multi-Spec-With-Firefox
+      test-command: env CYPRESS_NO_COMMAND_LOG=1 npx cypress run --browser electron --config baseUrl=https://opensearch.org --spec 'cypress/integration/plugins/cypress-multi-spec-test/*'
